@@ -134,11 +134,13 @@ def main():
             return_data += "\n\n" + data
         if "触发验证码" in return_data:
             ret_code = 3
+        push.push(ret_code, return_data)
         return ret_code, return_data
     elif config.config["account"]["cookie"] == "CookieError":
         raise CookieError('Cookie expires')
     else:
         log.warning("Config未启用！")
+        push.push(1, "Config未启用！")
         return 1, "Config未启用！"
 
 
