@@ -56,14 +56,16 @@ def ftqq(send_title, push_message):
 
 # pushplus
 def pushplus(send_title, push_message):
+    push_data = {
+        "token": cfg.get('setting', 'push_token'),
+        "title": send_title,
+        "content": push_message,
+    }
+    if config.config['push']['to']:
+        push_data['to'] = config.config['push']['to']
     http.post(
         url="https://www.pushplus.plus/send",
-        data={
-            "token": cfg.get('setting', 'push_token'),
-            "title": send_title,
-            "content": push_message,
-            "topic": cfg.get('pushplus', 'topic')
-        }
+        data=push_data
     )
 
 
