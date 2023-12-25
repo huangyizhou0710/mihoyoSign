@@ -132,7 +132,7 @@ class Mihoyobbs:
             header = self.headers.copy()
             for forum in setting.mihoyobbs_List_Use:
                 challenge = None
-                for retry_count in range(2):
+                for retry_count in range(5):
                     header["DS"] = tools.get_ds2("", json.dumps({"gids": forum["id"]}))
                     req = http.post(url=setting.bbs_sign_url, json={"gids": forum["id"]}, headers=header)
                     log.debug(req.text)
