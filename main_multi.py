@@ -77,6 +77,7 @@ def main_multi(autorun: bool):
         status = 2
     elif len(results["captcha"]) != 0:
         status = 3
+    config.config['push']['to'] = '' # 清空推送用户,只推送组织者
     push.push(status, push_message)
     return(status, push_message)
 
